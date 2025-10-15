@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - CAMA - Centre Académique de Formation</title>
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>CAMA</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="activites.html">Nos Activités</a></li>
+                    <li><a href="programmes.html">Programmes</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#contact" class="active">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Contact Section -->
+        <section class="contact" id="contact" style="margin-top: 60px;">
+            <div class="container">
+                <!-- Section Header -->
+                <header class="section-header">
+                    <div class="section-badge">
+                        <span>Contact</span>
+                    </div>
+                    <h2 class="section-title">Nous sommes là pour vous accompagner</h2>
+                    <p class="section-subtitle">
+                        Une question sur nos formations ? Besoin de conseils ? N'hésitez pas à nous contacter.
+                        Notre équipe se fera un plaisir de vous répondre.
+                    </p>
+                </header>
+
+                <!-- Contact Content -->
+                <div class="contact-content">
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="prenom">Prénom *</label>
+                                    <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nom">Nom *</label>
+                                    <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" placeholder="votre.email@example.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telephone">Téléphone</label>
+                                    <input type="tel" id="telephone" name="telephone" placeholder="+225 XX XX XX XX">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sujet">Sujet *</label>
+                                <select id="sujet" name="sujet" required>
+                                    <option value="">Choisissez un sujet</option>
+                                    <option value="formation">Formation</option>
+                                    <option value="concours">Préparation concours</option>
+                                    <option value="conference">Conférences & événements</option>
+                                    <option value="partenariat">Partenariat</option>
+                                    <option value="autre">Autre</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="6" placeholder="Décrivez votre demande en détail..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                Envoyer le message
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <aside class="contact-info">
+                        <h3>Nos coordonnées</h3>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Adresse</h4>
+                                <p>Cocody Angré, Rue des Jardins<br>
+                                Face au Centre Commercial<br>
+                                Abidjan, Côte d'Ivoire</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Téléphone</h4>
+                                <p>+225 07 XX XX XX XX<br>
+                                +225 05 XX XX XX XX</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Email</h4>
+                                <p>info@cama-formation.ci<br>
+                                contact@cama-formation.ci</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Horaires</h4>
+                                <p>Lun - Ven: 8h - 18h<br>
+                                Samedi: 8h - 14h<br>
+                                Dimanche: Fermé</p>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Social Media Section -->
+        <section class="social-media">
+            <div class="container">
+                <div class="social-card">
+                    <h3>Suivez-nous</h3>
+                    <p>Rejoignez notre communauté sur les réseaux sociaux</p>
+                    <div class="social-buttons">
+                        <a href="#" class="social-btn facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            Facebook
+                        </a>
+                        <a href="#" class="social-btn instagram">
+                            <i class="fab fa-instagram"></i>
+                            Instagram
+                        </a>
+                        <a href="#" class="social-btn linkedin">
+                            <i class="fab fa-linkedin-in"></i>
+                            LinkedIn
+                        </a>
+                        <a href="#" class="social-btn youtube">
+                            <i class="fab fa-youtube"></i>
+                            YouTube
+                        </a>
+                        <a href="#" class="social-btn whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CAMA</h3>
+                    <p>
+                        Centre Académique de Formation dédié à l'excellence et à l'innovation.
+                        Nous formons les professionnels de demain avec des programmes adaptés
+                        aux besoins du marché.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-link"></i> Liens rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="apropos.html">À propos</a></li>
+                        <li><a href="activites.html">Nos activités</a></li>
+                        <li><a href="programmes.html">Programmes</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-graduation-cap"></i> Nos formations</h4>
+                    <ul>
+                        <li><a href="#">AutoCAD</a></li>
+                        <li><a href="#">Revit</a></li>
+                        <li><a href="#">Archicad</a></li>
+                        <li><a href="#">SketchUp</a></li>
+                        <li><a href="#">Préparation concours</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-phone"></i> Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Cocody Angré, Rue des Jardins Abidjan, Côte d'Ivoire</p>
+                        <p><i class="fas fa-phone"></i> +225 07 XX XX XX XX</p>
+                        <p><i class="fas fa-envelope"></i> info@cama-formation.ci</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-stats">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Étudiants</span>
+                        <span class="stat-desc">Formés avec succès</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Formations</span>
+                        <span class="stat-desc">Programmes disponibles</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Ans</span>
+                        <span class="stat-desc">D'expérience</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 CAMA - Centre Académique de Formation. Tous droits réservés.</p>
+                <div class="footer-links">
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">Conditions d'utilisation</a>
+                    <a href="#">Mentions légales</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

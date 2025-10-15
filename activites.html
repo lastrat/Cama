@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Activités - CAMA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Styles spécifiques pour la page Nos Activités */
+        .activities-hero {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+             margin-top: 50px;
+        }
+        
+        .activities-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .activities-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .activities-content {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #007bff;
+            border-radius: 2px;
+        }
+        
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .activity-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .activity-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        
+        .activity-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+        
+        .activity-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .activity-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .category-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .category-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .category-text h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        
+        .category-text p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .category-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .programs-list {
+            margin-top: 30px;
+        }
+        
+        .program-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .program-item:last-child {
+            border-bottom: none;
+        }
+        
+        .program-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .program-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .program-level {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .program-level.beginner {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .program-level.intermediate {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .program-level.advanced {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .activity-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .activities-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .category-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .activity-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>CAMA</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="activites.html" class="active">Nos Activités</a></li>
+                    <li><a href="programmes.html">Programmes</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="activities-hero">
+        <div class="container">
+            <h1>Nos Activités</h1>
+            <p>Découvrez nos différentes activités conçues pour répondre à tous vos besoins d'apprentissage et de développement professionnel.</p>
+        </div>
+    </section>
+
+    <!-- Activities Content -->
+    <section class="activities-content">
+        <div class="container">
+            <h2 class="section-title">Domaines d'Activité</h2>
+            
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <div class="activity-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>Formations Logicielles</h3>
+                    <p>Maîtrisez les logiciels professionnels les plus demandés dans l'architecture et l'ingénierie. Nos formations sont dispensées par des experts du domaine et s'adaptent à tous les niveaux.</p>
+                    <a href="programmes.html" class="btn">En savoir plus</a>
+                </div>
+                
+                <div class="activity-card">
+                    <div class="activity-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h3>Préparation aux Concours</h3>
+                    <p>Préparez-vous efficacement aux concours d'entrée et examens avec nos méthodes éprouvées. Nous offrons des programmes intensifs et personnalisés pour maximiser vos chances de réussite.</p>
+                    <a href="programmes.html" class="btn">En savoir plus</a>
+                </div>
+                
+                <div class="activity-card">
+                    <div class="activity-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Conférences & Événements</h3>
+                    <p>Participez à nos événements pour rester à la pointe des dernières tendances et innovations. Nos conférences sont animées par des professionnels reconnus dans leurs domaines.</p>
+                    <a href="programmes.html" class="btn">En savoir plus</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Activities -->
+    <section class="category-section">
+        <div class="container">
+            <div class="category-content">
+                <div class="category-text">
+                    <h3>Formations Logicielles</h3>
+                    <p>Notre centre propose une gamme complète de formations logicielles pour vous permettre de maîtriser les outils professionnels les plus demandés sur le marché du travail. Nos formateurs sont des experts du domaine qui partagent leur expérience et leurs bonnes pratiques.</p>
+                    <p>Les formations sont dispensées dans des salles équipées de matériel récent et permettent un apprentissage pratique immédiat. Nous adaptons nos programmes à tous les niveaux, du débutant à l'expert.</p>
+                    
+                    <div class="programs-list">
+                        <div class="program-item">
+                            <div class="program-info">
+                                <h4>AutoCAD</h4>
+                                <p>Durée: 6 semaines</p>
+                            </div>
+                            <span class="program-level beginner">Débutant à Avancé</span>
+                        </div>
+                        
+                        <div class="program-item">
+                            <div class="program-info">
+                                <h4>Archicad</h4>
+                                <p>Durée: 8 semaines</p>
+                            </div>
+                            <span class="program-level intermediate">Intermédiaire</span>
+                        </div>
+                        
+                        <div class="program-item">
+                            <div class="program-info">
+                                <h4>Revit</h4>
+                                <p>Durée: 10 semaines</p>
+                            </div>
+                            <span class="program-level advanced">Professionnel</span>
+                        </div>
+                        
+                        <div class="program-item">
+                            <div class="program-info">
+                                <h4>SketchUp</h4>
+                                <p>Durée: 4 semaines</p>
+                            </div>
+                            <span class="program-level beginner">Débutant</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-buttons">
+                        <a href="programmes.html" class="btn">Voir les programmes</a>
+                        <a href="contact.html" class="btn btn-secondary">Demander des infos</a>
+                    </div>
+                </div>
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Formation en logiciels" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section" style="background: white; padding: 80px 0;">
+        <div class="container">
+            <div class="category-content">
+                <div class="category-image">
+                    <img src="https://www.cours-thales.fr/wp-content/uploads/2024/07/eleves-cours-8-2.png" alt="Préparation aux concours" />
+                </div>
+                <div class="category-text">
+                    <h3>Préparation aux Concours</h3>
+                    <p>Notre programme de préparation aux concours vous offre les méthodes et les connaissances nécessaires pour réussir vos examens et intégrer les institutions de votre choix. Nous proposons des formations intensives et personnalisées selon votre niveau et vos objectifs.</p>
+                    <p>Notre équipe pédagogique est composée de professeurs expérimentés qui connaissent parfaitement les épreuves et les attentes des différentes institutions. Nous mettons à votre disposition des ressources exclusives et des simulations d'épreuves.</p>
+                    
+                    <div class="programs-list">
+                        <div class="program-item">
+                            <div class="program-info">
+                                <h4>Concours Grandes Écoles</h4>
+                                <p>Durée: 12 mois</p>
+                            </div>
+                            <span class="program-level beginner">Intensif</span>
+                        </div>
+                        
+                        <div class="program-item">
+                            <div class="program-info">
+                                <h4>Examens d'État</h4>
+                                <p>Durée: 6 mois</p>
+                            </div>
+                            <span class="program-level intermediate">Standard</span>
+                        </div>
+                        
+                        <div class="program-item">
+                            <div class="program-info">
+                                <h4>Concours Internationaux</h4>
+                                <p>Durée: 8 mois</p>
+                            </div>
+                            <span class="program-level advanced">Expert</span>
+                        </div>
+                        
+                        <div class="program-item">
+                            <div class="program-info">
+                                <h4>Tests d'Aptitude</h4>
+                                <p>Durée: 3 mois</p>
+                            </div>
+                            <span class="program-level beginner">Préparatoire</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-buttons">
+                        <a href="programmes.html" class="btn">Voir les programmes</a>
+                        <a href="contact.html" class="btn btn-secondary">Demander des infos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section">
+        <div class="container">
+            <div class="category-content">
+                <div class="category-text">
+                    <h3>Conférences & Événements</h3>
+                    <p>Participez à nos événements pour élargir vos connaissances et rester à jour sur les dernières tendances de votre domaine. Nos conférences sont animées par des professionnels reconnus et offrent des opportunités de réseautage précieuses.</p>
+                    <p>Nos événements varient de la conférence technique aux ateliers pratiques, en passant par des séminaires professionnels. Nous adaptons le format à l'audience et aux objectifs de chaque événement.</p>
+                    
+                    <div class="programs-list">
+                        <div class="program-item">
+                            <div class="program-info">
+                                <h4>Conférences Tech</h4>
+                                <p>Durée: 2h</p>
+                            </div>
+                            <span class="program-level beginner">Tout public</span>
+                        </div>
+                        
+                        <div class="program-item">
+                            <div class="program-info">
+                                <h4>Workshops Pratiques</h4>
+                                <p>Durée: 1 jour</p>
+                            </div>
+                            <span class="program-level intermediate">Intermédiaire</span>
+                        </div>
+                        
+                        <div class="program-item">
+                            <div class="program-info">
+                                <h4>Podcasts Éducatifs</h4>
+                                <p>Durée: 45min</p>
+                            </div>
+                            <span class="program-level beginner">Débutant</span>
+                        </div>
+                        
+                        <div class="program-item">
+                            <div class="program-info">
+                                <h4>Séminaires Pros</h4>
+                                <p>Durée: 3 jours</p>
+                            </div>
+                            <span class="program-level advanced">Professionnel</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-buttons">
+                        <a href="programmes.html" class="btn">Voir les programmes</a>
+                        <a href="contact.html" class="btn btn-secondary">Demander des infos</a>
+                    </div>
+                </div>
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1758691736545-5c33b6255dca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHhidXNpbmVzcyUyMGNvbmZlcmVuY2UlMjBwcmVzZW50YXRpb258ZW58MXx8fHwxNzU4NzA4OTUxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Conférence en salle" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CAMA</h3>
+                    <p>
+                        Centre Académique de Formation dédié à l'excellence et à l'innovation. 
+                        Nous formons les professionnels de demain avec des programmes adaptés 
+                        aux besoins du marché.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-link"></i> Liens rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="apropos.html">À propos</a></li>
+                        <li><a href="activites.html">Nos activités</a></li>
+                        <li><a href="programmes.html">Programmes</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-graduation-cap"></i> Nos formations</h4>
+                    <ul>
+                        <li><a href="#">AutoCAD</a></li>
+                        <li><a href="#">Revit</a></li>
+                        <li><a href="#">Archicad</a></li>
+                        <li><a href="#">SketchUp</a></li>
+                        <li><a href="#">Préparation concours</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-phone"></i> Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Cocody Angré, Rue des Jardins Abidjan, Côte d'Ivoire</p>
+                        <p><i class="fas fa-phone"></i> +225 07 XX XX</p>
+                        <p><i class="fas fa-envelope"></i> info@cama-formation.ci</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CAMA - Centre Académique de Formation. Tous droits réservés.</p>
+                <div class="footer-links">
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">Conditions d'utilisation</a>
+                    <a href="#">Mentions légales</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

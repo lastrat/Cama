@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail de l'article - CAMA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Styles spécifiques pour la page Détail Blog */
+        .blog-detail-hero {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .blog-detail-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .blog-detail-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .blog-detail-content {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .blog-post {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .post-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .post-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #007bff;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .post-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .post-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .post-content {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .post-content p {
+            margin-bottom: 25px;
+        }
+        
+        .post-content h2 {
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            color: #333;
+        }
+        
+        .post-content h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            color: #333;
+        }
+        
+        .post-content ul, .post-content ol {
+            margin: 20px 0 20px 30px;
+        }
+        
+        .post-content li {
+            margin-bottom: 10px;
+        }
+        
+        .post-content blockquote {
+            border-left: 4px solid #007bff;
+            padding: 20px;
+            margin: 30px 0;
+            background: #f8f9fa;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 40px 0;
+        }
+        
+        .tag {
+            padding: 5px 15px;
+            background: #e9ecef;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #495057;
+        }
+        
+        .post-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin: 60px 0;
+            padding: 30px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #0056b3;
+        }
+        
+        .nav-link i {
+            font-size: 1.5rem;
+        }
+        
+        .author-box {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 50px 0;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #007bff;
+        }
+        
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .author-role {
+            color: #007bff;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .author-bio {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        .related-posts {
+            margin: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #007bff;
+            border-radius: 2px;
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .post-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .post-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .card-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #007bff;
+            color: white;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .card-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .card-content p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        .comments-section {
+            margin: 80px 0;
+        }
+        
+        .comment-form {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .comments-list {
+            margin-top: 50px;
+        }
+        
+        .comment {
+            padding: 25px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comment-header {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .comment-author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .comment-author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .comment-author {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .comment-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .comment-content {
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-detail-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .post-title {
+                font-size: 2rem;
+            }
+            
+            .post-meta {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+            
+            .post-image {
+                height: 250px;
+            }
+            
+            .author-box {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .post-navigation {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+            
+            .nav-link {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>CAMA</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="activites.html">Nos Activités</a></li>
+                    <li><a href="programmes.html">Programmes</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="blog-detail-hero">
+        <div class="container">
+            <h1>Détail de l'article</h1>
+            <p>Lisez nos dernières publications et actualités</p>
+        </div>
+    </section>
+
+    <!-- Blog Detail Content -->
+    <section class="blog-detail-content">
+        <div class="container">
+            <article class="blog-post">
+                <header class="post-header">
+                    <span class="post-category">Formation</span>
+                    <h1 class="post-title">Les Nouveautés d'AutoCAD 2024 : Ce qui change pour les professionnels</h1>
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> 15 Juin 2024</span>
+                        <span><i class="far fa-user"></i> Admin</span>
+                        <span><i class="far fa-clock"></i> 8 minutes de lecture</span>
+                    </div>
+                </header>
+                
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1646579886135-068c73800308?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1631" alt="Formation AutoCAD 2024" />
+                </div>
+                
+                <div class="post-content">
+                    <p>La version 2024 d'AutoCAD apporte son lot de nouveautés et d'améliorations qui vont considérablement transformer l'expérience utilisateur des professionnels de l'architecture, de l'ingénierie et de la construction. Ces mises à jour visent à améliorer la productivité, la collaboration et la précision dans les projets de conception.</p>
+                    
+                    <h2>Nouvelles fonctionnalités de dessin intelligent</h2>
+                    
+                    <p>L'une des avancées majeures d'AutoCAD 2024 est l'amélioration de ses capacités de dessin intelligent. Le logiciel intègre désormais des algorithmes d'apprentissage automatique qui anticipent les intentions de l'utilisateur et suggèrent automatiquement les outils et commandes les plus pertinents selon le contexte de travail.</p>
+                    
+                    <blockquote>
+                        "Cette fonctionnalité d'anticipation a réduit de 30% le temps nécessaire pour exécuter des tâches répétitives dans nos projets d'architecture."
+                        <cite>- Marie Kouamé, Directrice Technique CAMA</cite>
+                    </blockquote>
+                    
+                    <p>De plus, le système de contraintes géométriques a été revu pour offrir une précision accrue dans les dessins complexes. Les utilisateurs peuvent désormais définir des relations paramétriques plus sophistiquées entre les objets, facilitant la création de plans modifiables et adaptables.</p>
+                    
+                    <h3>Amélioration de l'interface utilisateur</h3>
+                    
+                    <p>L'interface d'AutoCAD 2024 bénéficie d'une refonte complète axée sur l'ergonomie et l'accessibilité. La nouvelle palette d'outils flottants peut être personnalisée selon les préférences de chaque utilisateur et s'adapte automatiquement à la taille de l'écran.</p>
+                    
+                    <ul>
+                        <li>Barre d'outils personnalisable avec accès rapide aux commandes fréquentes</li>
+                        <li>Nouveau thème sombre optimisé pour réduire la fatigue oculaire</li>
+                        <li>Palette de propriétés améliorée avec prévisualisation en temps réel</li>
+                        <li>Navigation intuitive par gestes tactile sur les écrans compatibles</li>
+                    </ul>
+                    
+                    <h2>Collaboration renforcée en cloud</h2>
+                    
+                    <p>AutoCAD 2024 introduit des fonctionnalités de collaboration en temps réel qui transforment la façon dont les équipes travaillent ensemble sur les projets. Plusieurs utilisateurs peuvent désormais modifier simultanément le même dessin avec un système de verrouillage intelligent qui prévient les conflits.</p>
+                    
+                    <ol>
+                        <li>Synchronisation instantanée des modifications entre tous les collaborateurs</li>
+                        <li>Système de commentaires intégré avec notifications en temps réel</li>
+                        <li>Historique des versions avec possibilité de restauration complète</li>
+                        <li>Comparaison visuelle des différences entre versions</li>
+                    </ol>
+                    
+                    <p>Cette évolution marque un tournant majeur dans l'industrie de la CAO, où la collaboration à distance devient de plus en plus essentielle. Les équipes distribuées géographiquement peuvent maintenant travailler avec la même efficacité que s'ils étaient dans le même bureau.</p>
+                    
+                    <h3>Sécurité et gestion des données</h3>
+                    
+                    <p>La sécurité des données sensibles de conception a été renforcée avec de nouveaux protocoles de chiffrement et d'authentification. AutoCAD 2024 inclut désormais une gestion des permissions granulaire qui permet de contrôler précisément qui peut accéder, modifier ou exporter chaque élément d'un projet.</p>
+                    
+                    <p>Les fonctionnalités de watermarking automatique protègent les documents contre l'utilisation non autorisée, tandis que les systèmes de traçabilité complète des modifications assurent une conformité renforcée avec les normes industrielles.</p>
+                </div>
+                
+                <div class="post-tags">
+                    <span class="tag">AutoCAD</span>
+                    <span class="tag">Formation</span>
+                    <span class="tag">Architecture</span>
+                    <span class="tag">Ingénierie</span>
+                    <span class="tag">CAO</span>
+                </div>
+                
+                <div class="post-navigation">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-arrow-left"></i>
+                        <div>
+                            <span>Article précédent</span>
+                            <p>Stratégies de Réussite aux Concours</p>
+                        </div>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <div>
+                            <span>Article suivant</span>
+                            <p>Parcours d'Excellence : Témoignage d'une Ancienne Étudiante</p>
+                        </div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="author-box">
+                    <div class="author-image">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Admin CAMA" />
+                    </div>
+                    <div class="author-info">
+                        <h4>Admin CAMA</h4>
+                        <p class="author-role">Rédacteur en chef</p>
+                        <p class="author-bio">Spécialiste en formation logicielle et technologies de l'information, je partage avec vous les dernières avancées technologiques et les meilleures pratiques pédagogiques dans le domaine de la CAO et de la conception assistée par ordinateur.</p>
+                    </div>
+                </div>
+                
+                <div class="comments-section">
+                    <h2 class="section-title">Commentaires (3)</h2>
+                    
+                    <div class="comments-list">
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="comment-author-image">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Jean K." />
+                                </div>
+                                <div>
+                                    <div class="comment-author">Jean K.</div>
+                                    <div class="comment-date">16 Juin 2024 à 09:30</div>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                <p>Excellent article ! Les explications sur les nouvelles fonctionnalités d'AutoCAD 2024 sont très claires. J'ai hâte d'essayer ces nouveautés dans mes projets. Merci pour ce partage.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="comment-author-image">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Marie T." />
+                                </div>
+                                <div>
+                                    <div class="comment-author">Marie T.</div>
+                                    <div class="comment-date">16 Juin 2024 à 14:15</div>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                <p>J'apprécie particulièrement la section sur la collaboration en cloud. Cela répond exactement aux besoins de mon équipe de travail à distance. Est-ce que CAMA propose des formations spécifiques sur ces nouvelles fonctionnalités ?</p>
+                            </div>
+                        </div>
+                        
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="comment-author-image">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Ahmed S." />
+                                </div>
+                                <div>
+                                    <div class="comment-author">Ahmed S.</div>
+                                    <div class="comment-date">17 Juin 2024 à 11:45</div>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                <p>Très bon article technique. La comparaison avec les versions précédentes est particulièrement utile. Pouvez-vous faire un article similaire pour Revit dans les prochaines semaines ?</p>
+                            </div>
+                        </div>
+                    
+                    <div class="comment-form">
+                        <h3>Laisser un commentaire</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Nom *</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Commentaire *</label>
+                                <textarea id="comment" class="form-control" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Publier le commentaire</button>
+                        </form>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    
+    <!-- Related Posts Section -->
+    <section class="related-posts">
+        <div class="container">
+            <h2 class="section-title">Articles similaires</h2>
+            
+            <div class="posts-grid">
+                <div class="post-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1536104968055-4d61aa56f46a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Préparation concours" />
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">Concours</span>
+                        <h3>Stratégies de Réussite aux Concours</h3>
+                        <div class="card-meta">
+                            <span><i class="far fa-calendar"></i> 28 Mai 2024</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <p>Des conseils pratiques et des méthodes éprouvées pour vous préparer efficacement aux concours d'entrée...</p>
+                        <a href="#" class="btn">Lire l'article</a>
+                    </div>
+                </div>
+                <div class="post-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Étudiants" />
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">Témoignages</span>
+                        <h3>Parcours d'Excellence : Témoignage d'une Ancienne Étudiante</h3>
+                        <div class="card-meta">
+                            <span><i class="far fa-calendar"></i> 10 Mai 2024</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <p>Découvrez le parcours inspirant de Marie K., qui a intégré une grande école après avoir suivi notre programme...</p>
+                        <a href="#" class="btn">Lire l'article</a>
+                    </div>
+                </div>
+                
+                <div class="post-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Technologie" />
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">Technologie</span>
+                        <h3>Le BIM et l'avenir de l'Architecture</h3>
+                        <div class="card-meta">
+                            <span><i class="far fa-calendar"></i> 30 Avril 2024</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <p>Exploration de l'impact du Building Information Modeling (BIM) sur la conception architecturale...</p>
+                        <a href="#" class="btn">Lire l'article</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CAMA</h3>
+                    <p>
+                        Centre Académique de Formation dédié à l'excellence et à l'innovation. 
+                        Nous formons les professionnels de demain avec des programmes adaptés 
+                        aux besoins du marché.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-link"></i> Liens rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="apropos.html">À propos</a></li>
+                        <li><a href="activites.html">Nos activités</a></li>
+                        <li><a href="programmes.html">Programmes</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-graduation-cap"></i> Nos formations</h4>
+                    <ul>
+                        <li><a href="#">AutoCAD</a></li>
+                        <li><a href="#">Revit</a></li>
+                        <li><a href="#">Archicad</a></li>
+                        <li><a href="#">SketchUp</a></li>
+                        <li><a href="#">Préparation concours</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-phone"></i> Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Cocody Angré, Rue des Jardins Abidjan, Côte d'Ivoire</p>
+                        <p><i class="fas fa-phone"></i> +225 07 XX XX XX XX</p>
+                        <p><i class="fas fa-envelope"></i> info@cama-formation.ci</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CAMA - Centre Académique de Formation. Tous droits réservés.</p>
+                <div class="footer-links">
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">Conditions d'utilisation</a>
+                    <a href="#">Mentions légales</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - CAMA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Styles spécifiques pour la page À propos */
+        .about-hero {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .about-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .about-content {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #007bff;
+            border-radius: 2px;
+        }
+        
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .about-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        
+        .card-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .about-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .about-card p {
+            color: #666;
+            line-height: 1.8;
+            text-align: center;
+        }
+        
+        .objectives {
+            margin-top: 60px;
+        }
+        
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .objective-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .objective-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .objective-item i {
+            color: #007bff;
+            font-size: 1.5rem;
+            margin-top: 5px;
+        }
+        
+        .objective-item span {
+            color: #555;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .history-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .history-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .history-text h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        
+        .history-text p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .history-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+        
+        .stat-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            color: #ffffff;
+        }
+        
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .history-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>CAMA</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="apropos.html" class="active">À propos</a></li>
+                    <li><a href="activites.html">Nos Activités</a></li>
+                    <li><a href="programmes.html">Programmes</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>À propos de CAMA</h1>
+            <p>Découvrez notre histoire, notre mission et notre engagement envers l'excellence académique</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <h2 class="section-title">Notre Histoire</h2>
+            
+            <div class="history-content">
+                <div class="history-text">
+                    <h3>Fondation et Développement</h3>
+                    <p>Le Centre Académique de Formation (CAMA) a été créé en 2019 avec une vision claire : offrir une formation de qualité supérieure aux étudiants et professionnels désireux de se perfectionner dans leurs domaines respectifs.</p>
+                    <p>Depuis notre création, nous sommes engagés à former une nouvelle génération de professionnels compétents et innovants dans tous les domaines académiques et techniques. Notre approche pédagogique unique combine théorie et pratique pour garantir une formation complète et professionnalisante.</p>
+                    <p>Nous aspirons à créer un écosystème d'apprentissage qui favorise l'excellence, l'innovation et le développement durable, en réponse aux besoins spécifiques du marché du travail en Afrique de l'Ouest.</p>
+                </div>
+                <div class="history-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Centre académique CAMA" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision and Mission -->
+    <section class="about-content" style="background: #f8f9fa; padding: 60px 0;">
+        <div class="container">
+            <h2 class="section-title">Notre Vision & Mission</h2>
+            
+            <div class="about-cards">
+                <div class="about-card">
+                    <div class="card-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Notre Vision</h3>
+                    <p>Être le centre de référence en Afrique de l'Ouest pour la formation académique et professionnelle, en offrant des programmes innovants et adaptés aux besoins du marché. Nous aspirons à créer un écosystème d'apprentissage qui favorise l'excellence, l'innovation et le développement durable.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="card-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Notre Mission</h3>
+                    <p>Accompagner nos étudiants vers la réussite en proposant des formations de qualité, un encadrement personnalisé et des opportunités de développement professionnel. Nous nous engageons à maintenir les plus hauts standards académiques tout en restant accessibles et innovants.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objectives -->
+    <section class="about-content">
+        <div class="container">
+            <h2 class="section-title">Nos Objectifs</h2>
+            
+            <div class="objectives">
+                <div class="objectives-grid">
+                    <div class="objective-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Former des professionnels compétents</span>
+                    </div>
+                    <div class="objective-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Développer l'innovation pédagogique</span>
+                    </div>
+                    <div class="objective-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Créer un réseau professionnel solide</span>
+                    </div>
+                    <div class="objective-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Promouvoir l'excellence académique</span>
+                    </div>
+                    <div class="objective-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Assurer une insertion professionnelle rapide</span>
+                    </div>
+                    <div class="objective-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Adapter nos formations aux évolutions du marché</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Notre Impact</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Étudiants formés</span>
+                    <span class="stat-desc">Avec succès</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Formations</span>
+                    <span class="stat-desc">Programmes disponibles</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Ans</span>
+                    <span class="stat-desc">D'expérience</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Taux de réussite</span>
+                    <span class="stat-desc">De nos étudiants</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CAMA</h3>
+                    <p>
+                        Centre Académique de Formation dédié à l'excellence et à l'innovation. 
+                        Nous formons les professionnels de demain avec des programmes adaptés 
+                        aux besoins du marché.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-link"></i> Liens rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="apropos.html">À propos</a></li>
+                        <li><a href="activites.html">Nos activités</a></li>
+                        <li><a href="programmes.html">Programmes</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-graduation-cap"></i> Nos formations</h4>
+                    <ul>
+                        <li><a href="#">AutoCAD</a></li>
+                        <li><a href="#">Revit</a></li>
+                        <li><a href="#">Archicad</a></li>
+                        <li><a href="#">SketchUp</a></li>
+                        <li><a href="#">Préparation concours</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-phone"></i> Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Cocody Angré, Rue des Jardins Abidjan, Côte d'Ivoire</p>
+                        <p><i class="fas fa-phone"></i> +225 07 XX XX XX</p>
+                        <p><i class="fas fa-envelope"></i> info@cama-formation.ci</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CAMA - Centre Académique de Formation. Tous droits réservés.</p>
+                <div class="footer-links">
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">Conditions d'utilisation</a>
+                    <a href="#">Mentions légales</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

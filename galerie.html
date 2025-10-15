@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie - CAMA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Styles spécifiques pour la page Galerie */
+        .gallery-hero {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+              margin-top: 50px;
+
+        }
+        
+        .gallery-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .gallery-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .gallery-content {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #007bff;
+            border-radius: 2px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 300px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-caption {
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .gallery-caption h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .gallery-caption p {
+            color: #ddd;
+            font-size: 0.9rem;
+        }
+        
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: #007bff;
+            color: white;
+        }
+        
+        .gallery-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .gallery-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+        
+        .gallery-description p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>CAMA</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="activites.html">Nos Activités</a></li>
+                    <li><a href="programmes.html">Programmes</a></li>
+                    <li><a href="galerie.html" class="active">Galerie</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1>Notre Galerie</h1>
+            <p>Découvrez nos réalisations, événements et moments marquants de la vie de notre centre académique</p>
+        </div>
+    </section>
+
+    <!-- Gallery Content -->
+    <section class="gallery-content">
+        <div class="container">
+            <h2 class="section-title">Moments Inoubliables</h2>
+            
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">Tout</button>
+                <button class="filter-btn" data-filter="formations">Formations</button>
+                <button class="filter-btn" data-filter="evenements">Événements</button>
+                <button class="filter-btn" data-filter="etudiants">Étudiants</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="formations">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Cours en salle informatique" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">
+                            <h3>Formation AutoCAD</h3>
+                            <p>Session de formation en logiciels professionnels</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="etudiants">
+                    <img src="https://images.unsplash.com/photo-1557734864-c78b6dfef1b1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1634" alt="Étudiants en groupe" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">
+                            <h3>Étudiants motivés</h3>
+                            <p>Notre communauté d'apprenants</p>
+                        </div>
+                    </div>
+                
+                <div class="gallery-item" data-category="evenements">
+                    <img src="https://images.unsplash.com/photo-1758691736545-5c33b6255dca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHhidXNpbmVzcyUyMGNvbmZlcmVuY2UlMjBwcmVzZW50YXRpb258ZW58MXx8fHwxNzU4NzA4OTUxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Conférence" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">
+                            <h3>Conférence Tech</h3>
+                            <p>Événement professionnel</p>
+                        </div>
+                    </div>
+                
+                <div class="gallery-item" data-category="formations">
+                    <img src="https://plus.unsplash.com/premium_photo-1661763874747-405eb7388c58?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070" alt="Formation en logiciels" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">
+                            <h3>Formation Revit</h3>
+                            <p>Modélisation BIM</p>
+                        </div>
+                    </div>
+                
+                <div class="gallery-item" data-category="etudiants">
+                    <img src="https://images.unsplash.com/photo-1758582171503-ce7b5c28bb4d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Étudiante en cours" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">
+                            <h3>Travail pratique</h3>
+                            <p>Apprentissage en situation réelle</p>
+                        </div>
+                    </div>
+                
+                <div class="gallery-item" data-category="evenements">
+                    <img src="https://images.unsplash.com/photo-1627556704243-5f0771d90783?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Cérémonie de remise de diplômes" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">
+                            <h3>Diplômation</h3>
+                            <p>Célébration de la réussite</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Description -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-description">
+                <h2 class="section-title">Notre Communauté en Images</h2>
+                <p>Notre galerie témoigne de l'atmosphère dynamique de notre centre académique. Découvrez les moments forts de nos formations, les événements professionnels, les interactions entre étudiants et formateurs, ainsi que les réalisations de nos apprenants. Chaque image raconte une histoire de dévouement, d'apprentissage et de réussite.</p>
+                <p>Nous croyons que la photographie capture l'essence de notre mission éducative et le dynamisme de notre communauté. Explorez nos collections pour vivre l'expérience CAMA à travers les yeux de ceux qui la vivent chaque jour.</p>
+                <a href="contact.html" class="btn" style="margin-top: 20px;">Visiter notre centre</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for gallery images -->
+    <div class="gallery-modal" id="galleryModal">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Image agrandie">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CAMA</h3>
+                    <p>
+                        Centre Académique de Formation dédié à l'excellence et à l'innovation. 
+                        Nous formons les professionnels de demain avec des programmes adaptés 
+                        aux besoins du marché.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-link"></i> Liens rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="apropos.html">À propos</a></li>
+                        <li><a href="activites.html">Nos activités</a></li>
+                        <li><a href="programmes.html">Programmes</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-graduation-cap"></i> Nos formations</h4>
+                    <ul>
+                        <li><a href="#">AutoCAD</a></li>
+                        <li><a href="#">Revit</a></li>
+                        <li><a href="#">Archicad</a></li>
+                        <li><a href="#">SketchUp</a></li>
+                        <li><a href="#">Préparation concours</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-phone"></i> Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Cocody Angré, Rue des Jardins Abidjan, Côte d'Ivoire</p>
+                        <p><i class="fas fa-phone"></i> +225 07 XX XX</p>
+                        <p><i class="fas fa-envelope"></i> info@cama-formation.ci</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CAMA - Centre Académique de Formation. Tous droits réservés.</p>
+                <div class="footer-links">
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">Conditions d'utilisation</a>
+                    <a href="#">Mentions légales</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Simple gallery filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    const filter = btn.getAttribute('data-filter');
+                    
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Modal functionality
+            const modal = document.getElementById('galleryModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeBtn = document.getElementById('closeModal');
+            const galleryImages = document.querySelectorAll('.gallery-item img');
+            
+            galleryImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    modalImg.src = this.src;
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                });
+            });
+            
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Restore scrolling
+                }
+            });
+        });
+    </script>
+</body>
+</html>

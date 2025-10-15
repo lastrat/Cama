@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - CAMA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Styles spécifiques pour la page Blog */
+        .blog-hero {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .blog-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .blog-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .blog-content {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #007bff;
+            border-radius: 2px;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .blog-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .blog-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+        
+        .blog-content {
+            padding: 25px;
+        }
+        
+        .blog-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #007bff;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .blog-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .blog-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .blog-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        .blog-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .blog-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+        
+        .blog-intro p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .blog-subscribe {
+            background: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .blog-subscribe h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .blog-subscribe p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        .subscribe-form {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .subscribe-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .subscribe-form button {
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .blog-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        
+        .pagination-btn {
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .pagination-btn.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .subscribe-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>CAMA</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="activites.html">Nos Activités</a></li>
+                    <li><a href="programmes.html">Programmes</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1>Notre Blog</h1>
+            <p>Restez informé des dernières actualités, tendances et conseils dans le domaine académique et professionnel</p>
+        </div>
+    </section>
+
+    <!-- Blog Intro -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-intro">
+                <h2 class="section-title">Dernières Actualités</h2>
+                <p>Explorez nos articles pour découvrir les dernières tendances en matière de formation professionnelle, les conseils pour réussir vos concours, les nouveautés dans les logiciels professionnels et bien plus encore. Notre blog est une ressource précieuse pour tous les apprenants et professionnels en quête de développement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="blog-content">
+        <div class="container">
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1646579886135-068c73800308?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1631" alt="Formation logiciels" />
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Formation</span>
+                        <h3>Les Nouveautés d'AutoCAD 2024</h3>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 15 Juin 2024</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <p>Découvrez les dernières fonctionnalités d'AutoCAD 2024 et comment elles peuvent améliorer votre productivité et vos réalisations professionnelles.</p>
+                        <a href="blog-detail.html" class="btn">Lire l'article</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1536104968055-4d61aa56f46a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Préparation concours" />
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Concours</span>
+                        <h3>Stratégies de Réussite aux Concours</h3>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 28 Mai 2024</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <p>Des conseils pratiques et des méthodes éprouvées pour vous préparer efficacement aux concours d'entrée dans les grandes écoles.</p>
+                        <a href="blog-detail.html" class="btn">Lire l'article</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Étudiants" />
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Témoignages</span>
+                        <h3>Parcours d'Excellence : Témoignage d'une Ancienne Étudiante</h3>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 10 Mai 2024</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <p>Découvrez le parcours inspirant de Marie K., qui a intégré une grande école après avoir suivi notre programme de préparation aux concours.</p>
+                        <a href="blog-detail.html" class="btn">Lire l'article</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Technologie" />
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Technologie</span>
+                        <h3>Le BIM et l'avenir de l'Architecture</h3>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 30 Avril 2024</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <p>Exploration de l'impact du Building Information Modeling (BIM) sur la conception architecturale et les processus de construction.</p>
+                        <a href="blog-detail.html" class="btn">Lire l'article</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Carrière" />
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Carrière</span>
+                        <h3>Comment Se Préparer au Marché du Travail</h3>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 18 Avril 2024</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <p>Des conseils pratiques pour bien préparer votre entrée sur le marché du travail et vous démarquer des autres candidats.</p>
+                        <a href="blog-detail.html" class="btn">Lire l'article</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://plus.unsplash.com/premium_photo-1661407402465-e10d42979714?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Éducation" />
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Éducation</span>
+                        <h3>L'Importance de la Formation Continue</h3>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 5 Avril 2024</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <p>Pourquoi la formation continue est essentielle dans un monde en constante évolution technologique et professionnelle.</p>
+                        <a href="blog-detail.html" class="btn">Lire l'article</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-pagination">
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscribe Section -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-subscribe">
+                <h3>Restez Informé</h3>
+                <p>Abonnez-vous à notre newsletter pour recevoir nos derniers articles et actualités directement dans votre boîte de réception.</p>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Votre adresse e-mail" required>
+                    <button type="submit">S'abonner</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CAMA</h3>
+                    <p>
+                        Centre Académique de Formation dédié à l'excellence et à l'innovation. 
+                        Nous formons les professionnels de demain avec des programmes adaptés 
+                        aux besoins du marché.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-link"></i> Liens rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="apropos.html">À propos</a></li>
+                        <li><a href="activites.html">Nos activités</a></li>
+                        <li><a href="programmes.html">Programmes</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-graduation-cap"></i> Nos formations</h4>
+                    <ul>
+                        <li><a href="#">AutoCAD</a></li>
+                        <li><a href="#">Revit</a></li>
+                        <li><a href="#">Archicad</a></li>
+                        <li><a href="#">SketchUp</a></li>
+                        <li><a href="#">Préparation concours</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4><i class="fas fa-phone"></i> Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Cocody Angré, Rue des Jardins Abidjan, Côte d'Ivoire</p>
+                        <p><i class="fas fa-phone"></i> +225 07 XX XX</p>
+                        <p><i class="fas fa-envelope"></i> info@cama-formation.ci</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 CAMA - Centre Académique de Formation. Tous droits réservés.</p>
+                <div class="footer-links">
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">Conditions d'utilisation</a>
+                    <a href="#">Mentions légales</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
