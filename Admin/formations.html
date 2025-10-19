@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration CAMA - Gestion des Formations</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-wrapper">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <div class="d-flex align-items-center">
+                            <div class="admin-logo me-3">
+                                <i class="bi bi-gear-fill text-primary"></i>
+                            </div>
+                            <div>
+                                <h1 class="admin-title">Administration CAMA</h1>
+                                <p class="admin-subtitle">Panneau de contrôle</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <button class="btn btn-danger">
+                            <i class="bi bi-box-arrow-right me-2"></i>
+                            Déconnexion
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="admin-nav mt-3">
+            <div class="container mx-auto">
+                <ul class="nav nav-pills admin-nav-pills justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="bi bi-speedometer2 me-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="formations.html">
+                            <i class="bi bi-book me-2"></i>
+                            Formations
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="evenements.html">
+                            <i class="bi bi-calendar-event me-2"></i>
+                            Événements
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="temoignages.html">
+                            <i class="bi bi-chat-quote me-2"></i>
+                            Témoignages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="statistiques.html">
+                            <i class="bi bi-graph-up me-2"></i>
+                            Statistiques
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <div class="container">
+                <!-- Page Header -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h2 class="page-title">Gestion des Formations</h2>
+                        <p class="page-subtitle">Créez et gérez les programmes de formation CAMA</p>
+                    </div>
+                    <button class="btn btn-primary btn-new" data-bs-toggle="modal" data-bs-target="#nouvelleFormationModal">
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Nouvelle Formation
+                    </button>
+                </div>
+
+                <!-- Formations Table -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-table me-2"></i>
+                            Liste des Formations
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="formationsTable" class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Formation</th>
+                                        <th>Catégorie</th>
+                                        <th>Dates</th>
+                                        <th>Prix</th>
+                                        <th>Inscriptions</th>
+                                        <th>Statut</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-row-hover">
+                                        <td>
+                                            <div class="formation-info">
+                                                <h6 class="formation-title">Formation AutoCAD Complète</h6>
+                                                <div class="formation-details">
+                                                    <span class="badge bg-outline-secondary">
+                                                        <i class="bi bi-clock me-1"></i>
+                                                        6 semaines
+                                                    </span>
+                                                    <span class="badge bg-outline-primary">
+                                                        <i class="bi bi-geo-alt me-1"></i>
+                                                        Salle Informatique A
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="category-badge logiciel">
+                                                <i class="bi bi-laptop me-1"></i>
+                                                Logiciel
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="date-info">
+                                                <div class="date-main">Du 15/10/2024</div>
+                                                <div class="date-sub">au 26/11/2024</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="price-text">150 000 FCFA</span>
+                                        </td>
+                                        <td>
+                                            <div class="inscription-info">
+                                                <span class="inscription-count">
+                                                    <i class="bi bi-people me-1"></i>
+                                                    12/20
+                                                </span>
+                                                <div class="progress mt-1">
+                                                    <div class="progress-bar" role="progressbar" style="width: 60%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="status-badge actif">
+                                                <i class="bi bi-check-circle me-1"></i>
+                                                Actif
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-primary" title="Modifier">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" title="Supprimer">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="table-row-hover">
+                                        <td>
+                                            <div class="formation-info">
+                                                <h6 class="formation-title">Préparation Concours INP-HB</h6>
+                                                <div class="formation-details">
+                                                    <span class="badge bg-outline-secondary">
+                                                        <i class="bi bi-clock me-1"></i>
+                                                        3 mois
+                                                    </span>
+                                                    <span class="badge bg-outline-success">
+                                                        <i class="bi bi-geo-alt me-1"></i>
+                                                        Amphithéâtre B
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="category-badge concours">
+                                                <i class="bi bi-trophy me-1"></i>
+                                                Concours
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="date-info">
+                                                <div class="date-main">Du 01/11/2024</div>
+                                                <div class="date-sub">au 31/01/2025</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="price-text">200 000 FCFA</span>
+                                        </td>
+                                        <td>
+                                            <div class="inscription-info">
+                                                <span class="inscription-count">
+                                                    <i class="bi bi-people me-1"></i>
+                                                    18/30
+                                                </span>
+                                                <div class="progress mt-1">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 60%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="status-badge actif">
+                                                <i class="bi bi-check-circle me-1"></i>
+                                                Actif
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-primary" title="Modifier">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" title="Supprimer">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="table-row-hover">
+                                        <td>
+                                            <div class="formation-info">
+                                                <h6 class="formation-title">Formation Développement Web</h6>
+                                                <div class="formation-details">
+                                                    <span class="badge bg-outline-secondary">
+                                                        <i class="bi bi-clock me-1"></i>
+                                                        8 semaines
+                                                    </span>
+                                                    <span class="badge bg-outline-primary">
+                                                        <i class="bi bi-geo-alt me-1"></i>
+                                                        Salle Informatique B
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="category-badge logiciel">
+                                                <i class="bi bi-code-slash me-1"></i>
+                                                Développement
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="date-info">
+                                                <div class="date-main">Du 20/11/2024</div>
+                                                <div class="date-sub">au 15/01/2025</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="price-text">180 000 FCFA</span>
+                                        </td>
+                                        <td>
+                                            <div class="inscription-info">
+                                                <span class="inscription-count">
+                                                    <i class="bi bi-people me-1"></i>
+                                                    8/25
+                                                </span>
+                                                <div class="progress mt-1">
+                                                    <div class="progress-bar bg-info" role="progressbar" style="width: 32%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="status-badge inactif">
+                                                <i class="bi bi-pause-circle me-1"></i>
+                                                Inactif
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-primary" title="Modifier">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" title="Supprimer">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="table-row-hover">
+                                        <td>
+                                            <div class="formation-info">
+                                                <h6 class="formation-title">Formation Excel Avancé</h6>
+                                                <div class="formation-details">
+                                                    <span class="badge bg-outline-secondary">
+                                                        <i class="bi bi-clock me-1"></i>
+                                                        4 semaines
+                                                    </span>
+                                                    <span class="badge bg-outline-primary">
+                                                        <i class="bi bi-geo-alt me-1"></i>
+                                                        Salle Informatique A
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="category-badge logiciel">
+                                                <i class="bi bi-file-earmark-spreadsheet me-1"></i>
+                                                Bureautique
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="date-info">
+                                                <div class="date-main">Du 05/12/2024</div>
+                                                <div class="date-sub">au 30/12/2024</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="price-text">120 000 FCFA</span>
+                                        </td>
+                                        <td>
+                                            <div class="inscription-info">
+                                                <span class="inscription-count">
+                                                    <i class="bi bi-people me-1"></i>
+                                                    15/20
+                                                </span>
+                                                <div class="progress mt-1">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="status-badge actif">
+                                                <i class="bi bi-check-circle me-1"></i>
+                                                Actif
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-primary" title="Modifier">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" title="Supprimer">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="row mt-4">
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <div class="card-body text-center">
+                                <div class="stats-icon mx-auto mb-3">
+                                    <i class="bi bi-check-circle"></i>
+                                </div>
+                                <h3 class="stats-number">8</h3>
+                                <p class="stats-title">Formations Actives</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <div class="card-body text-center">
+                                <div class="stats-icon mx-auto mb-3">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                                <h3 class="stats-number">156</h3>
+                                <p class="stats-title">Total Inscriptions</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <div class="card-body text-center">
+                                <div class="stats-icon mx-auto mb-3">
+                                    <i class="bi bi-cash"></i>
+                                </div>
+                                <h3 class="stats-number">650k</h3>
+                                <p class="stats-title">FCFA Revenus</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <div class="card-body text-center">
+                                <div class="stats-icon mx-auto mb-3">
+                                    <i class="bi bi-graph-up"></i>
+                                </div>
+                                <h3 class="stats-number">89%</h3>
+                                <p class="stats-title">Taux Occupation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Nouvelle Formation Modal -->
+    <div class="modal fade" id="nouvelleFormationModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Nouvelle Formation
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formationForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Titre de la formation *</label>
+                                    <input type="text" class="form-control" id="formationTitre" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Catégorie *</label>
+                                    <select class="form-select" id="formationCategorie" required>
+                                        <option value="">Choisir une catégorie</option>
+                                        <option value="logiciel">Logiciel</option>
+                                        <option value="concours">Concours</option>
+                                        <option value="technique">Technique</option>
+                                        <option value="developpement">Développement</option>
+                                        <option value="bureautique">Bureautique</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Date de début *</label>
+                                    <input type="date" class="form-control" id="formationDateDebut" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Date de fin *</label>
+                                    <input type="date" class="form-control" id="formationDateFin" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Prix (FCFA) *</label>
+                                    <input type="number" class="form-control" id="formationPrix" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Nombre max d'étudiants *</label>
+                                    <input type="number" class="form-control" id="formationMaxEtudiants" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Salle *</label>
+                                    <select class="form-select" id="formationSalle" required>
+                                        <option value="">Choisir une salle</option>
+                                        <option value="salle-a">Salle Informatique A</option>
+                                        <option value="salle-b">Salle Informatique B</option>
+                                        <option value="amphi-a">Amphithéâtre A</option>
+                                        <option value="amphi-b">Amphithéâtre B</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" id="formationDescription" rows="3" placeholder="Description de la formation..."></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Prérequis</label>
+                            <input type="text" class="form-control" id="formationPrerequis" placeholder="Connaissances requises...">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" onclick="creerFormation()">Créer Formation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize DataTable
+            $('#formationsTable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/fr-FR.json'
+                },
+                responsive: true,
+                columnDefs: [
+                    { orderable: false, targets: [6] }
+                ],
+                pageLength: 10,
+                order: [[ 2, 'asc' ]] // Sort by dates
+            });
+
+            // Add animation to table rows
+            $('#formationsTable tbody tr').each(function(index) {
+                $(this).css('animation-delay', `${index * 0.1}s`);
+                $(this).addClass('fade-in');
+            });
+        });
+
+        function creerFormation() {
+            // Get form data
+            const formationData = {
+                titre: document.getElementById('formationTitre').value,
+                categorie: document.getElementById('formationCategorie').value,
+                dateDebut: document.getElementById('formationDateDebut').value,
+                dateFin: document.getElementById('formationDateFin').value,
+                prix: document.getElementById('formationPrix').value,
+                maxEtudiants: document.getElementById('formationMaxEtudiants').value,
+                salle: document.getElementById('formationSalle').value,
+                description: document.getElementById('formationDescription').value,
+                prerequis: document.getElementById('formationPrerequis').value
+            };
+
+            // Basic validation
+            if (!formationData.titre || !formationData.categorie || !formationData.dateDebut) {
+                AdminDashboard.showNotification('Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+
+            // Show loading
+            const btn = document.querySelector('#nouvelleFormationModal .btn-primary');
+            const originalText = btn.textContent;
+            btn.innerHTML = '<span class="loading-spinner"></span> Création...';
+            btn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                // Reset form
+                document.getElementById('formationForm').reset();
+
+                // Close modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('nouvelleFormationModal'));
+                modal.hide();
+
+                // Show success message
+                AdminDashboard.showNotification(`Formation "${formationData.titre}" créée avec succès!`, 'success');
+
+                // Reset button
+                btn.textContent = originalText;
+                btn.disabled = false;
+
+                // Refresh table (in real app, this would reload data)
+                setTimeout(() => {
+                    location.reload();
+                }, 1500);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

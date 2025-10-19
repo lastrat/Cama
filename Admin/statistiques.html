@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration CAMA - Statistiques</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-wrapper">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <div class="d-flex align-items-center">
+                            <div class="admin-logo me-3">
+                                <i class="bi bi-gear-fill text-primary"></i>
+                            </div>
+                            <div>
+                                <h1 class="admin-title">Administration CAMA</h1>
+                                <p class="admin-subtitle">Panneau de contrôle</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <button class="btn btn-danger">
+                            <i class="bi bi-box-arrow-right me-2"></i>
+                            Déconnexion
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="admin-nav mt-3">
+            <div class="container mx-auto">
+                <ul class="nav nav-pills admin-nav-pills justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="bi bi-speedometer2 me-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="formations.html">
+                            <i class="bi bi-book me-2"></i>
+                            Formations
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="evenements.html">
+                            <i class="bi bi-calendar-event me-2"></i>
+                            Événements
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="temoignages.html">
+                            <i class="bi bi-chat-quote me-2"></i>
+                            Témoignages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="statistiques.html">
+                            <i class="bi bi-graph-up me-2"></i>
+                            Statistiques
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <div class="container">
+                <!-- Page Header -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h2 class="page-title">Statistiques</h2>
+                        <p class="page-subtitle">Analyse des performances et métriques CAMA</p>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <select class="form-select" id="dateRangeSelect" style="width: auto;">
+                            <option value="7">7 derniers jours</option>
+                            <option value="30" selected>30 derniers jours</option>
+                            <option value="90">3 derniers mois</option>
+                            <option value="365">Cette année</option>
+                        </select>
+                        <button class="btn btn-outline-primary" onclick="exporterStatistiques()">
+                            <i class="bi bi-download me-2"></i>
+                            Exporter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Key Metrics Cards -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <div class="card-body text-center">
+                                <div class="stats-icon mx-auto mb-3">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                                <h3 class="stats-number" id="totalEtudiants">1,247</h3>
+                                <p class="stats-title">Total Étudiants</p>
+                                <span class="stats-trend">
+                                    <i class="bi bi-arrow-up text-success me-1"></i>
+                                    +12% ce mois
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <div class="card-body text-center">
+                                <div class="stats-icon mx-auto mb-3">
+                                    <i class="bi bi-cash"></i>
+                                </div>
+                                <h3 class="stats-number" id="revenusTotal">2,450,000</h3>
+                                <p class="stats-title">FCFA Revenus</p>
+                                <span class="stats-trend">
+                                    <i class="bi bi-arrow-up text-success me-1"></i>
+                                    +8% ce mois
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <div class="card-body text-center">
+                                <div class="stats-icon mx-auto mb-3">
+                                    <i class="bi bi-trophy"></i>
+                                </div>
+                                <h3 class="stats-number" id="tauxReussite">94%</h3>
+                                <p class="stats-title">Taux Réussite</p>
+                                <span class="stats-trend">
+                                    <i class="bi bi-arrow-up text-success me-1"></i>
+                                    +2% ce mois
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <div class="card-body text-center">
+                                <div class="stats-icon mx-auto mb-3">
+                                    <i class="bi bi-star"></i>
+                                </div>
+                                <h3 class="stats-number" id="satisfaction">4.8</h3>
+                                <p class="stats-title">Satisfaction</p>
+                                <span class="stats-trend">
+                                    <i class="bi bi-arrow-up text-success me-1"></i>
+                                    +0.2 ce mois
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row 1 -->
+                <div class="row mb-4">
+                    <div class="col-lg-8">
+                        <div class="content-card chart-card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="bi bi-graph-up me-2"></i>
+                                    Inscriptions Mensuelles
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="inscriptionsChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="content-card chart-card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="bi bi-pie-chart me-2"></i>
+                                    Formations Populaires
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="formationsChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row 2 -->
+                <div class="row mb-4">
+                    <div class="col-lg-6">
+                        <div class="content-card chart-card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="bi bi-bar-chart me-2"></i>
+                                    Revenus par Formation
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="revenusChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="content-card chart-card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="bi bi-line me-2"></i>
+                                    Évolution Satisfaction
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="satisfactionChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row 3 -->
+                <div class="row mb-4">
+                    <div class="col-lg-6">
+                        <div class="content-card chart-card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="bi bi-geo-alt me-2"></i>
+                                    Répartition Géographique
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="geographieChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="content-card chart-card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="bi bi-calendar-check me-2"></i>
+                                    Taux de Participation
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="participationChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Statistics Table -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-table me-2"></i>
+                            Détail par Formation
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Formation</th>
+                                        <th>Inscriptions</th>
+                                        <th>Taux Remplissage</th>
+                                        <th>Revenus (FCFA)</th>
+                                        <th>Note Moyenne</th>
+                                        <th>Tendance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="formation-info-table">
+                                                <h6>Formation AutoCAD Complète</h6>
+                                                <span class="badge bg-primary">Logiciel</span>
+                                            </div>
+                                        </td>
+                                        <td>45</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 90%"></div>
+                                            </div>
+                                            <small>90%</small>
+                                        </td>
+                                        <td>6,750,000</td>
+                                        <td>
+                                            <div class="stars-small">
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                            </div>
+                                            <small>5.0</small>
+                                        </td>
+                                        <td><span class="badge bg-success">+15%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="formation-info-table">
+                                                <h6>Préparation Concours INP-HB</h6>
+                                                <span class="badge bg-success">Concours</span>
+                                            </div>
+                                        </td>
+                                        <td>38</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" style="width: 76%"></div>
+                                            </div>
+                                            <small>76%</small>
+                                        </td>
+                                        <td>7,600,000</td>
+                                        <td>
+                                            <div class="stars-small">
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-half text-warning"></i>
+                                            </div>
+                                            <small>4.5</small>
+                                        </td>
+                                        <td><span class="badge bg-success">+8%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="formation-info-table">
+                                                <h6>Formation Développement Web</h6>
+                                                <span class="badge bg-info">Développement</span>
+                                            </div>
+                                        </td>
+                                        <td>32</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-info" style="width: 64%"></div>
+                                            </div>
+                                            <small>64%</small>
+                                        </td>
+                                        <td>5,760,000</td>
+                                        <td>
+                                            <div class="stars-small">
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star text-warning"></i>
+                                            </div>
+                                            <small>4.0</small>
+                                        </td>
+                                        <td><span class="badge bg-danger">-3%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="formation-info-table">
+                                                <h6>Formation Excel Avancé</h6>
+                                                <span class="badge bg-secondary">Bureautique</span>
+                                            </div>
+                                        </td>
+                                        <td>28</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 93%"></div>
+                                            </div>
+                                            <small>93%</small>
+                                        </td>
+                                        <td>3,360,000</td>
+                                        <td>
+                                            <div class="stars-small">
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                            </div>
+                                            <small>5.0</small>
+                                        </td>
+                                        <td><span class="badge bg-success">+22%</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+
+    <script>
+        // Initialize charts when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            initializeStatsAnimations();
+
+            // Update charts when date range changes
+            document.getElementById('dateRangeSelect').addEventListener('change', function() {
+                updateChartsData(this.value);
+            });
+        });
+
+        function initializeCharts() {
+            createInscriptionsChart();
+            createFormationsChart();
+            createRevenusChart();
+            createSatisfactionChart();
+            createGeographieChart();
+            createParticipationChart();
+        }
+
+        function createInscriptionsChart() {
+            const ctx = document.getElementById('inscriptionsChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'],
+                    datasets: [{
+                        label: 'Inscriptions',
+                        data: [45, 52, 48, 65, 78, 85, 92, 88, 95, 102, 118, 125],
+                        borderColor: 'rgb(99, 102, 241)',
+                        backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        }
+
+        function createFormationsChart() {
+            const ctx = document.getElementById('formationsChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['AutoCAD', 'INP-HB', 'Web Dev', 'Excel', 'Autres'],
+                    datasets: [{
+                        data: [35, 28, 22, 18, 15],
+                        backgroundColor: [
+                            'rgb(99, 102, 241)',
+                            'rgb(16, 185, 129)',
+                            'rgb(59, 130, 246)',
+                            'rgb(245, 158, 11)',
+                            'rgb(139, 92, 246)'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        }
+
+        function createRevenusChart() {
+            const ctx = document.getElementById('revenusChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['AutoCAD', 'INP-HB', 'Web Dev', 'Excel', 'Autres'],
+                    datasets: [{
+                        label: 'Revenus (FCFA)',
+                        data: [6750000, 7600000, 5760000, 3360000, 1530000],
+                        backgroundColor: [
+                            'rgba(99, 102, 241, 0.8)',
+                            'rgba(16, 185, 129, 0.8)',
+                            'rgba(59, 130, 246, 0.8)',
+                            'rgba(245, 158, 11, 0.8)',
+                            'rgba(139, 92, 246, 0.8)'
+                        ],
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return (value / 1000000).toFixed(1) + 'M';
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        }
+
+        function createSatisfactionChart() {
+            const ctx = document.getElementById('satisfactionChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun'],
+                    datasets: [{
+                        label: 'Note Moyenne',
+                        data: [4.2, 4.3, 4.4, 4.5, 4.6, 4.8],
+                        borderColor: 'rgb(245, 158, 11)',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 4.0,
+                            max: 5.0
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        }
+
+        function createGeographieChart() {
+            const ctx = document.getElementById('geographieChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Dakar', 'Thiès', 'Saint-Louis', 'Kaolack', 'Autres'],
+                    datasets: [{
+                        data: [45, 23, 18, 12, 8],
+                        backgroundColor: [
+                            'rgb(99, 102, 241)',
+                            'rgb(16, 185, 129)',
+                            'rgb(59, 130, 246)',
+                            'rgb(245, 158, 11)',
+                            'rgb(107, 114, 128)'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        }
+
+        function createParticipationChart() {
+            const ctx = document.getElementById('participationChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Inscription', 'Assiduité', 'Participation', 'Satisfaction', 'Recommandation'],
+                    datasets: [{
+                        label: 'Taux (%)',
+                        data: [95, 87, 78, 92, 85],
+                        backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                        borderColor: 'rgb(99, 102, 241)',
+                        pointBackgroundColor: 'rgb(99, 102, 241)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(99, 102, 241)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        }
+
+        function initializeStatsAnimations() {
+            // Animate numbers on load
+            animateNumber('totalEtudiants', 0, 1247, 2000);
+            animateNumber('revenusTotal', 0, 2450000, 2000);
+            animateNumber('tauxReussite', 0, 94, 2000);
+            animateNumber('satisfaction', 0, 4.8, 2000);
+        }
+
+        function animateNumber(elementId, start, end, duration) {
+            const element = document.getElementById(elementId);
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Easing function
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+
+                let current = start + (end - start) * easeOutQuart;
+
+                // Format numbers
+                if (elementId === 'revenusTotal') {
+                    element.textContent = Math.floor(current).toLocaleString();
+                } else if (elementId === 'satisfaction') {
+                    element.textContent = current.toFixed(1);
+                } else if (elementId === 'tauxReussite') {
+                    element.textContent = Math.floor(current) + '%';
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString();
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        function updateChartsData(dateRange) {
+            // Simulate data update based on date range
+            AdminDashboard.showNotification(`Données mises à jour pour ${dateRange} jours`, 'success');
+
+            // In a real application, this would fetch new data from the server
+            // For now, we'll just show a notification
+        }
+
+        function exporterStatistiques() {
+            // Simulate export functionality
+            AdminDashboard.showNotification('Export des statistiques en cours...', 'info');
+
+            setTimeout(() => {
+                AdminDashboard.showNotification('Statistiques exportées avec succès!', 'success');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

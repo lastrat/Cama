@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration CAMA - Gestion des Témoignages</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-wrapper">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <div class="d-flex align-items-center">
+                            <div class="admin-logo me-3">
+                                <i class="bi bi-gear-fill text-primary"></i>
+                            </div>
+                            <div>
+                                <h1 class="admin-title">Administration CAMA</h1>
+                                <p class="admin-subtitle">Panneau de contrôle</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <button class="btn btn-outline-danger">
+                            <i class="bi bi-box-arrow-right me-2"></i>
+                            Déconnexion
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="admin-nav mt-3">
+            <div class="container mx-auto">
+                <ul class="nav nav-pills admin-nav-pills justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="bi bi-speedometer2 me-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="formations.html">
+                            <i class="bi bi-book me-2"></i>
+                            Formations
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="evenements.html">
+                            <i class="bi bi-calendar-event me-2"></i>
+                            Événements
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="temoignages.html">
+                            <i class="bi bi-chat-quote me-2"></i>
+                            Témoignages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="statistiques.html">
+                            <i class="bi bi-graph-up me-2"></i>
+                            Statistiques
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <div class="container">
+                <!-- Page Header -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h2 class="page-title">Gestion des Témoignages</h2>
+                        <p class="page-subtitle">Modérez et gérez les témoignages des étudiants</p>
+                    </div>
+                    <button class="btn btn-info btn-new" data-bs-toggle="modal" data-bs-target="#nouveauTemoignageModal">
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Ajouter Témoignage
+                    </button>
+                </div>
+
+                <!-- Témoignages Table -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-table me-2"></i>
+                            Liste des Témoignages
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="temoignagesTable" class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Auteur</th>
+                                        <th>Formation</th>
+                                        <th>Témoignage</th>
+                                        <th>Date</th>
+                                        <th>Statut</th>
+                                        <th>Note</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-row-hover">
+                                        <td>
+                                            <div class="auteur-info">
+                                                <div class="auteur-avatar">
+                                                    <i class="bi bi-person-circle"></i>
+                                                </div>
+                                                <div class="auteur-details">
+                                                    <h6 class="auteur-nom">Marie Claire Ndiaye</h6>
+                                                    <span class="auteur-email">marie.ndiaye@email.com</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="formation-badge">
+                                                <i class="bi bi-book me-1"></i>
+                                                Formation AutoCAD
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="temoignage-preview">
+                                                <p class="temoignage-text">"Excellente formation ! Le formateur était très pédagogue et les exercices pratiques m'ont permis de maîtriser rapidement AutoCAD..."</p>
+                                                <button class="btn btn-sm btn-outline-primary btn-read-more" data-bs-toggle="modal" data-bs-target="#temoignageModal1">
+                                                    Lire la suite
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="date-info">
+                                                <div class="date-main">15/10/2024</div>
+                                                <div class="date-sub">Il y a 2 jours</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="status-badge publie">
+                                                <i class="bi bi-check-circle me-1"></i>
+                                                Publié
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="note-info">
+                                                <div class="stars">
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                </div>
+                                                <span class="note-text">5/5</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-info" title="Voir détails">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" title="Supprimer">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="table-row-hover">
+                                        <td>
+                                            <div class="auteur-info">
+                                                <div class="auteur-avatar">
+                                                    <i class="bi bi-person-circle"></i>
+                                                </div>
+                                                <div class="auteur-details">
+                                                    <h6 class="auteur-nom">Ahmed Sall</h6>
+                                                    <span class="auteur-email">ahmed.sall@email.com</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="formation-badge">
+                                                <i class="bi bi-trophy me-1"></i>
+                                                Concours INP-HB
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="temoignage-preview">
+                                                <p class="temoignage-text">"La préparation au concours INP-HB était intensive mais très efficace. Les professeurs connaissent parfaitement le format du concours..."</p>
+                                                <button class="btn btn-sm btn-outline-primary btn-read-more" data-bs-toggle="modal" data-bs-target="#temoignageModal2">
+                                                    Lire la suite
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="date-info">
+                                                <div class="date-main">12/10/2024</div>
+                                                <div class="date-sub">Il y a 5 jours</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="status-badge attente">
+                                                <i class="bi bi-clock me-1"></i>
+                                                En attente
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="note-info">
+                                                <div class="stars">
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-half text-warning"></i>
+                                                </div>
+                                                <span class="note-text">4.5/5</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-info" title="Voir détails">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-success" title="Approuver">
+                                                    <i class="bi bi-check"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" title="Supprimer">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="table-row-hover">
+                                        <td>
+                                            <div class="auteur-info">
+                                                <div class="auteur-avatar">
+                                                    <i class="bi bi-person-circle"></i>
+                                                </div>
+                                                <div class="auteur-details">
+                                                    <h6 class="auteur-nom">Fatou Diop</h6>
+                                                    <span class="auteur-email">fatou.diop@email.com</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="formation-badge">
+                                                <i class="bi bi-code-slash me-1"></i>
+                                                Développement Web
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="temoignage-preview">
+                                                <p class="temoignage-text">"Formation très complète qui couvre tous les aspects du développement web moderne. Les projets pratiques sont particulièrement formateurs..."</p>
+                                                <button class="btn btn-sm btn-outline-primary btn-read-more" data-bs-toggle="modal" data-bs-target="#temoignageModal3">
+                                                    Lire la suite
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="date-info">
+                                                <div class="date-main">08/10/2024</div>
+                                                <div class="date-sub">Il y a 9 jours</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="status-badge publie">
+                                                <i class="bi bi-check-circle me-1"></i>
+                                                Publié
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="note-info">
+                                                <div class="stars">
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star text-warning"></i>
+                                                </div>
+                                                <span class="note-text">4/5</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-info" title="Voir détails">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" title="Supprimer">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="table-row-hover">
+                                        <td>
+                                            <div class="auteur-info">
+                                                <div class="auteur-avatar">
+                                                    <i class="bi bi-person-circle"></i>
+                                                </div>
+                                                <div class="auteur-details">
+                                                    <h6 class="auteur-nom">Moussa Kane</h6>
+                                                    <span class="auteur-email">moussa.kane@email.com</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="formation-badge">
+                                                <i class="bi bi-file-earmark-spreadsheet me-1"></i>
+                                                Excel Avancé
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="temoignage-preview">
+                                                <p class="temoignage-text">"Cette formation Excel m'a ouvert de nouvelles perspectives professionnelles. Les formateurs sont des experts et les supports de cours sont excellents..."</p>
+                                                <button class="btn btn-sm btn-outline-primary btn-read-more" data-bs-toggle="modal" data-bs-target="#temoignageModal4">
+                                                    Lire la suite
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="date-info">
+                                                <div class="date-main">05/10/2024</div>
+                                                <div class="date-sub">Il y a 12 jours</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="status-badge attente">
+                                                <i class="bi bi-clock me-1"></i>
+                                                En attente
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="note-info">
+                                                <div class="stars">
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                </div>
+                                                <span class="note-text">5/5</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-info" title="Voir détails">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-success" title="Approuver">
+                                                    <i class="bi bi-check"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" title="Supprimer">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="row mt-4">
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <div class="card-body text-center">
+                                <div class="stats-icon mx-auto mb-3">
+                                    <i class="bi bi-check-circle"></i>
+                                </div>
+                                <h3 class="stats-number">24</h3>
+                                <p class="stats-title">Témoignages Publiés</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <div class="card-body text-center">
+                                <div class="stats-icon mx-auto mb-3">
+                                    <i class="bi bi-clock"></i>
+                                </div>
+                                <h3 class="stats-number">4</h3>
+                                <p class="stats-title">En Attente</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <div class="card-body text-center">
+                                <div class="stats-icon mx-auto mb-3">
+                                    <i class="bi bi-star"></i>
+                                </div>
+                                <h3 class="stats-number">4.7</h3>
+                                <p class="stats-title">Note Moyenne</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <div class="card-body text-center">
+                                <div class="stats-icon mx-auto mb-3">
+                                    <i class="bi bi-graph-up"></i>
+                                </div>
+                                <h3 class="stats-number">+12%</h3>
+                                <p class="stats-title">Ce Mois</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Témoignage Detail Modals -->
+    <!-- Modal 1 -->
+    <div class="modal fade" id="temoignageModal1" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Témoignage de Marie Claire Ndiaye</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="temoignage-full">
+                        <p>"Excellente formation ! Le formateur était très pédagogue et les exercices pratiques m'ont permis de maîtriser rapidement AutoCAD. L'ambiance de travail était studieuse et conviviale. Je recommande vivement cette formation à tous ceux qui veulent apprendre ce logiciel."</p>
+                        <div class="temoignage-meta">
+                            <span><strong>Formation:</strong> Formation AutoCAD Complète</span>
+                            <span><strong>Note:</strong> 5/5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal fade" id="temoignageModal2" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Témoignage d'Ahmed Sall</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="temoignage-full">
+                        <p>"La préparation au concours INP-HB était intensive mais très efficace. Les professeurs connaissent parfaitement le format du concours et nous donnent les bonnes méthodes de travail. Les entraînements réguliers m'ont permis d'aborder le concours avec confiance."</p>
+                        <div class="temoignage-meta">
+                            <span><strong>Formation:</strong> Préparation Concours INP-HB</span>
+                            <span><strong>Note:</strong> 4.5/5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div class="modal fade" id="temoignageModal3" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Témoignage de Fatou Diop</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="temoignage-full">
+                        <p>"Formation très complète qui couvre tous les aspects du développement web moderne. Les projets pratiques sont particulièrement formateurs et nous mettent dans des situations réelles. L'équipe pédagogique est disponible et compétente."</p>
+                        <div class="temoignage-meta">
+                            <span><strong>Formation:</strong> Formation Développement Web</span>
+                            <span><strong>Note:</strong> 4/5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4 -->
+    <div class="modal fade" id="temoignageModal4" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Témoignage de Moussa Kane</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="temoignage-full">
+                        <p>"Cette formation Excel m'a ouvert de nouvelles perspectives professionnelles. Les formateurs sont des experts et les supports de cours sont excellents. Les exercices progressifs permettent de bien assimiler les concepts."</p>
+                        <div class="temoignage-meta">
+                            <span><strong>Formation:</strong> Formation Excel Avancé</span>
+                            <span><strong>Note:</strong> 5/5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nouveau Témoignage Modal -->
+    <div class="modal fade" id="nouveauTemoignageModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Nouveau Témoignage
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="temoignageForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Nom de l'auteur *</label>
+                                    <input type="text" class="form-control" id="temoignageAuteur" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Email de l'auteur *</label>
+                                    <input type="email" class="form-control" id="temoignageEmail" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Formation suivie *</label>
+                                    <select class="form-select" id="temoignageFormation" required>
+                                        <option value="">Choisir une formation</option>
+                                        <option value="autocad">Formation AutoCAD Complète</option>
+                                        <option value="inp-hb">Préparation Concours INP-HB</option>
+                                        <option value="web-dev">Formation Développement Web</option>
+                                        <option value="excel">Formation Excel Avancé</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Note *</label>
+                                    <select class="form-select" id="temoignageNote" required>
+                                        <option value="">Donner une note</option>
+                                        <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                                        <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                                        <option value="3">⭐⭐⭐ (3/5)</option>
+                                        <option value="2">⭐⭐ (2/5)</option>
+                                        <option value="1">⭐ (1/5)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Témoignage *</label>
+                            <textarea class="form-control" id="temoignageTexte" rows="4" required placeholder="Partagez votre expérience avec cette formation..."></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="temoignagePublier" checked>
+                                <label class="form-check-label" for="temoignagePublier">
+                                    Publier immédiatement
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-info" onclick="creerTemoignage()">Ajouter Témoignage</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize DataTable
+            $('#temoignagesTable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/fr-FR.json'
+                },
+                responsive: true,
+                columnDefs: [
+                    { orderable: false, targets: [6] }
+                ],
+                pageLength: 10,
+                order: [[ 3, 'desc' ]] // Sort by date
+            });
+
+            // Add animation to table rows
+            $('#temoignagesTable tbody tr').each(function(index) {
+                $(this).css('animation-delay', `${index * 0.1}s`);
+                $(this).addClass('fade-in');
+            });
+        });
+
+        function creerTemoignage() {
+            // Get form data
+            const temoignageData = {
+                auteur: document.getElementById('temoignageAuteur').value,
+                email: document.getElementById('temoignageEmail').value,
+                formation: document.getElementById('temoignageFormation').value,
+                note: document.getElementById('temoignageNote').value,
+                texte: document.getElementById('temoignageTexte').value,
+                publier: document.getElementById('temoignagePublier').checked
+            };
+
+            // Basic validation
+            if (!temoignageData.auteur || !temoignageData.email || !temoignageData.formation || !temoignage.note || !temoignageData.texte) {
+                AdminDashboard.showNotification('Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+
+            // Show loading
+            const btn = document.querySelector('#nouveauTemoignageModal .btn-info');
+            const originalText = btn.textContent;
+            btn.innerHTML = '<span class="loading-spinner"></span> Ajout...';
+            btn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                // Reset form
+                document.getElementById('temoignageForm').reset();
+
+                // Close modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('nouveauTemoignageModal'));
+                modal.hide();
+
+                // Show success message
+                AdminDashboard.showNotification(`Témoignage de "${temoignageData.auteur}" ajouté avec succès!`, 'success');
+
+                // Reset button
+                btn.textContent = originalText;
+                btn.disabled = false;
+
+                // Refresh table (in real app, this would reload data)
+                setTimeout(() => {
+                    location.reload();
+                }, 1500);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

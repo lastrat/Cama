@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration CAMA - Tableau de Bord</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+    <!-- Enhanced Activities CSS -->
+    <link href="enhanced-activities.css" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-wrapper">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <div class="d-flex align-items-center">
+                            <div class="admin-logo me-3">
+                                <i class="bi bi-gear-fill text-primary" style="color:white !important;"></i>
+                            </div>
+                            <div>
+                                <h1 class="admin-title">Administration CAMA</h1>
+                                <p class="admin-subtitle">Panneau de contrôle</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <button class="btn btn-danger">
+                            <i class="bi bi-box-arrow-right me-2"></i>
+                            Déconnexion
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="admin-nav mt-3">
+            <div class="container mx-auto">
+                <ul class="nav nav-pills admin-nav-pills justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">
+                            <i class="bi bi-speedometer2 me-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="formations.html">
+                            <i class="bi bi-book me-2"></i>
+                            Formations
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="evenements.html">
+                            <i class="bi bi-calendar-event me-2"></i>
+                            Événements
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="temoignages.html">
+                            <i class="bi bi-chat-quote me-2"></i>
+                            Témoignages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="statistiques.html">
+                            <i class="bi bi-graph-up me-2"></i>
+                            Statistiques
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <div class="container">
+                <!-- Statistics Cards -->
+                <div class="row mb-4">
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-4">
+                        <div class="stats-card formations-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="stats-info">
+                                        <h6 class="stats-title">Formations actives</h6>
+                                        <h2 class="stats-number">12</h2>
+                                        <p class="stats-trend">
+                                            <i class="bi bi-arrow-up text-success me-1"></i>
+                                            +2 ce mois
+                                        </p>
+                                    </div>
+                                    <div class="stats-icon formations-icon">
+                                        <i class="bi bi-book"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-4">
+                        <div class="stats-card etudiants-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="stats-info">
+                                        <h6 class="stats-title">Étudiants inscrits</h6>
+                                        <h2 class="stats-number">156</h2>
+                                        <p class="stats-trend">
+                                            <i class="bi bi-arrow-up text-success me-1"></i>
+                                            +15 cette semaine
+                                        </p>
+                                    </div>
+                                    <div class="stats-icon etudiants-icon">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-4">
+                        <div class="stats-card evenements-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="stats-info">
+                                        <h6 class="stats-title">Événements à venir</h6>
+                                        <h2 class="stats-number">4</h2>
+                                        <p class="stats-trend">
+                                            <span class="text-warning">2 en préparation</span>
+                                        </p>
+                                    </div>
+                                    <div class="stats-icon evenements-icon">
+                                        <i class="bi bi-calendar-plus"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-4">
+                        <div class="stats-card temoignages-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="stats-info">
+                                        <h6 class="stats-title">Témoignages</h6>
+                                        <h2 class="stats-number">28</h2>
+                                        <p class="stats-trend">
+                                            <i class="bi bi-arrow-up text-success me-1"></i>
+                                            +3 en attente
+                                        </p>
+                                    </div>
+                                    <div class="stats-icon temoignages-icon">
+                                        <i class="bi bi-chat-quote"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="row">
+                    <!-- Recent Activities -->
+                    <div class="col-lg-8 mb-4">
+                        <div class="content-card activities-card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="bi bi-clock-history me-2"></i>
+                                    Activités récentes
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="timeline timeline-enhanced">
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker bg-success"></div>
+                                        <div class="timeline-content">
+                                            <h6 class="timeline-title">Nouvelle formation AutoCAD créée</h6>
+                                            <p class="timeline-time">Il y a 2 heures</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker bg-primary"></div>
+                                        <div class="timeline-content">
+                                            <h6 class="timeline-title">5 nouvelles inscriptions reçues</h6>
+                                            <p class="timeline-time">Il y a 4 heures</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker bg-success"></div>
+                                        <div class="timeline-content">
+                                            <h6 class="timeline-title">Nouveau témoignage publié</h6>
+                                            <p class="timeline-time">Il y a 1 jour</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker bg-warning"></div>
+                                        <div class="timeline-content">
+                                            <h6 class="timeline-title">Conférence Tech reportée</h6>
+                                            <p class="timeline-time">Il y a 2 jours</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="col-lg-4 mb-4">
+                        <div class="content-card actions-card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="bi bi-lightning-charge me-2"></i>
+                                    Actions rapides
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-grid gap-3">
+                                    <button class="btn btn-primary btn-action" data-bs-toggle="modal" data-bs-target="#nouvelleFormationModal">
+                                        <i class="bi bi-plus-circle me-2"></i>
+                                        Nouvelle formation
+                                    </button>
+
+                                    <button class="btn btn-success btn-action" data-bs-toggle="modal" data-bs-target="#nouvelEvenementModal">
+                                        <i class="bi bi-calendar-plus me-2"></i>
+                                        Nouvel événement
+                                    </button>
+
+                                    <button class="btn btn-info btn-action" data-bs-toggle="modal" data-bs-target="#nouveauTemoignageModal">
+                                        <i class="bi bi-chat-quote me-2"></i>
+                                        Ajouter témoignage
+                                    </button>
+
+                                    <button class="btn btn-warning btn-action" onclick="window.location.href='statistiques.html'">
+                                        <i class="bi bi-graph-up me-2"></i>
+                                        Voir statistiques
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- System Status -->
+                        <div class="content-card system-card mt-4">
+                            <div class="card-header">
+                                <h6 class="card-title mb-0">
+                                    <i class="bi bi-shield-check me-2"></i>
+                                    État du système
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="system-status">
+                                    <div class="status-item">
+                                        <span class="status-label">Serveur</span>
+                                        <span class="badge bg-success">Actif</span>
+                                    </div>
+                                    <div class="status-item">
+                                        <span class="status-label">Base de données</span>
+                                        <span class="badge bg-success">Connecté</span>
+                                    </div>
+                                    <div class="status-item">
+                                        <span class="status-label">Dernière sauvegarde</span>
+                                        <span class="status-time">Il y a 2h</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Nouvelle Formation Modal -->
+    <div class="modal fade" id="nouvelleFormationModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nouvelle Formation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Titre de la formation</label>
+                            <input type="text" class="form-control" placeholder="Ex: Formation AutoCAD Complète">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Catégorie</label>
+                            <select class="form-select">
+                                <option>Logiciel</option>
+                                <option>Concours</option>
+                                <option>Technique</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Durée</label>
+                            <input type="text" class="form-control" placeholder="Ex: 6 semaines">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary">Créer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nouvel Événement Modal -->
+    <div class="modal fade" id="nouvelEvenementModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nouvel Événement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Titre de l'événement</label>
+                            <input type="text" class="form-control" placeholder="Ex: Conférence Innovation & Technology 2024">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Type</label>
+                            <select class="form-select">
+                                <option>Conférence</option>
+                                <option>Workshop</option>
+                                <option>Séminaire</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date et heure</label>
+                            <input type="datetime-local" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-success">Créer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nouveau Témoignage Modal -->
+    <div class="modal fade" id="nouveauTemoignageModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nouveau Témoignage</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Auteur</label>
+                            <input type="text" class="form-control" placeholder="Nom de l'étudiant">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Formation suivie</label>
+                            <input type="text" class="form-control" placeholder="Ex: Formation AutoCAD">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Témoignage</label>
+                            <textarea class="form-control" rows="4" placeholder="Partagez votre expérience..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-info">Publier</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
